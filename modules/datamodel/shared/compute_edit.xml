@@ -82,7 +82,7 @@
 				resubmissions. One worker may process multiple tasks.
 			</description>
 			<field name="ComputeTask" type="xref" xref_entity="ComputeTask" description="the task for which the history was collected" />
-			<field name="ComputeWorker" type="xref" xref_entity="ComputeWorker" description="the worker that (tried to) execute(d) this task" />
+			<field name="ComputeWorker" nillable="true" type="xref" xref_entity="ComputeWorker" description="the worker that (tried to) execute(d) this task" />
 			<field name="StatusCode" nillable="false" type="enum" enum_options="[submitted,queued,running,failed,done,resubmitted]" default="submitted" description="current status of this task." />
 			<field name="StatusTime" type="datetime" auto="true" description="time of state change" />
 			<field name="OutputFile" nillable="true" type="text" description="content of the output file (only applicable on fail/done of a task)" />

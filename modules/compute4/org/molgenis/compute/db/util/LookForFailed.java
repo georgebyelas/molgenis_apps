@@ -1,10 +1,12 @@
 package org.molgenis.compute.db.util;
 
 import app.DatabaseFactory;
+import org.molgenis.compute.runtime.ComputeHistory;
 import org.molgenis.compute.runtime.ComputeTask;
 import org.molgenis.framework.db.Database;
 import org.molgenis.framework.db.DatabaseException;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,6 +33,16 @@ public class LookForFailed
 			{
                 if(task.getStatusCode().equalsIgnoreCase("failed"))
                 {
+                    //create history
+                    ComputeHistory history = new ComputeHistory();
+                    history.setComputeTask(task);
+                    history.setOutputFile(task.getRunLog());
+                    Date date = new Date();
+                    history.setStatusTime(date);
+                    history.setStatusCode(task.getStatusCode());
+                    db.add(history);
+
+                    //mark job as generated
 				    task.setStatusCode("generated");
                     task.setRunLog("");
                     System.out.println(task.getName() + " >>> changed from failed to generated");
