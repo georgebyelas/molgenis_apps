@@ -108,7 +108,7 @@ public class ComputeExecutorPilotDB implements ComputeExecutor
             //sleep, because we have a strange behavior in pilot service
             try
             {
-                Thread.sleep(10000);
+                Thread.sleep(2000);
             }
             catch (InterruptedException e)
             {
